@@ -2,6 +2,7 @@
 #define _LINUXBRIDGE_H_
 
 #include <sys/types.h>
+#include <stdio.h>
 #include <uuid/uuid.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -12,6 +13,7 @@
 #include <signal.h>
 #include <errno.h>
 #include <sys/time.h>
+#include <sys/sendfile.h>
 
 #undef SIG_IGN
 __sighandler_t SIG_IGN = (__sighandler_t)1;
@@ -43,10 +45,10 @@ extern inline int pthread_cond_timedwait_relative_np(pthread_cond_t * cond, pthr
 	gettimeofday(&time, NULL);
 	timeout.tv_sec = time.tv_sec + tmspec->tv_sec;
 	timeout.tv_nsec = (time.tv_usec * 1000) + tmspec->tv_nsec;
-	
+
 	timeout.tv_sec += timeout.tv_nsec / 1000000000;
 	timeout.tv_nsec %= 1000000000;
-	
+
 	int i = pthread_cond_timedwait(cond, mutx, &timeout);
 	return i;
 }
