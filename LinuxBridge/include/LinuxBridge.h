@@ -22,6 +22,5 @@ int linux_fcntl_get(int fd, int cmd);
 int linux_fcntl_set(int fd, int cmd, int value);
 int linux_open(const char *path, int oflag, mode_t mode);
 int linux_errno();
-int pthread_cond_timedwait_relative_np(pthread_cond_t * cond, pthread_mutex_t * mutx, const struct timespec * tmspec);
 
 #endif
