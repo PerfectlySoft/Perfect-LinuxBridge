@@ -21,5 +21,13 @@
 import PackageDescription
 
 let package = Package(
-	name: "LinuxBridge"
+	name: "LinuxBridge",
+	products: [
+		.library(name: "LinuxBridge", targets: ["LinuxBridge"]),
+		],
+	dependencies: [
+	],
+	targets: [
+		.target(name: "LinuxBridge", dependencies: [])
+	]
 )
